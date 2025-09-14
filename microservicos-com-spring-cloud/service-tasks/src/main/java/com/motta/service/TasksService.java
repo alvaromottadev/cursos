@@ -1,6 +1,7 @@
 package com.motta.service;
 
 import com.motta.dto.NotificationRequest;
+import com.motta.dto.TaskRequest;
 import com.motta.model.TasksEntity;
 import com.motta.openfeign.NotificationClient;
 import com.motta.repository.TasksRepository;
@@ -21,7 +22,8 @@ public class TasksService {
         this.notificationClient = notificationClient;
     }
 
-    public TasksEntity saveTask(TasksEntity tasksEntity){
+    public TasksEntity saveTask(TaskRequest request){
+        TasksEntity tasksEntity = new TasksEntity(request);
         return tasksRepository.save(tasksEntity);
     }
 
@@ -31,11 +33,12 @@ public class TasksService {
         for(TasksEntity task : dueTasks){
             notificationClient.sendNotification(
                     new NotificationRequest(
-                            "Task Due",
-                            "Your task '" + task.getTitle() + "' is due today."
+                            "Your task '" + task.getTitle() + "' is due today.",
+                            "task@example.com"
                     )
             );
             task.setNotified(true);
+            tasksRepository.save(task);
         }
     }
 

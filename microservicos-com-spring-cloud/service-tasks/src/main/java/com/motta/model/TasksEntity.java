@@ -1,5 +1,6 @@
 package com.motta.model;
 
+import com.motta.dto.TaskRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,12 @@ public class TasksEntity {
     private LocalDateTime dueDate;
 
     private boolean notified;
+
+    public TasksEntity(TaskRequest taskRequest){
+        this.title = taskRequest.title();
+        this.email = taskRequest.email();
+        this.dueDate = taskRequest.dueDate();
+        this.notified = taskRequest.notified();
+    }
 
 }

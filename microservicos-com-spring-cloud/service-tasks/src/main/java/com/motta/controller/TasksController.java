@@ -1,5 +1,6 @@
 package com.motta.controller;
 
+import com.motta.dto.TaskRequest;
 import com.motta.model.TasksEntity;
 import com.motta.service.TasksService;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class TasksController {
     }
 
     @PostMapping
-    public ResponseEntity<TasksEntity> createTask(@RequestBody TasksEntity tasksEntity){
-        TasksEntity savedTask = tasksService.saveTask(tasksEntity);
+    public ResponseEntity<TasksEntity> createTask(@RequestBody TaskRequest request){
+        TasksEntity savedTask = tasksService.saveTask(request);
         return ResponseEntity.ok(savedTask);
     }
 

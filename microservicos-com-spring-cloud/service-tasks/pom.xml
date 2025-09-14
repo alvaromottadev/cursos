@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.motta</groupId>
-	<artifactId>TasksService</artifactId>
+	<artifactId>service-tasks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TasksService</name>
+	<name>service-tasks</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
